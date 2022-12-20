@@ -10,6 +10,7 @@
 </head>
 <body class="home">
 <ul>
+
     @foreach($users as $user)
         <li>{{$user->name}}<span>X</span></li>
     @endforeach

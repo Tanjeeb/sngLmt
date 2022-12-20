@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[PagesController::class,'index'])->name('home');
-Route::get('/user-list',[PagesController::class,'users'])->name('user');
+Route::get('/', [PagesController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/login', [PagesController::class, 'login'])->name('login');
+Route::post('/login', [PagesController::class, 'loginPost'])->name('auth.post');
+Route::get('/register', [PagesController::class, 'registerShow'])->name('register');
+Route::post('/register', [PagesController::class, 'register'])->name('auth.register');
+Route::get('/logout', [PagesController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/user-list', [PagesController::class, 'users'])->name('user')->middleware('auth');
