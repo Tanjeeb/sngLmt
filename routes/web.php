@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PagesController::class, 'index'])->name('home')->middleware('auth');
-Route::get('/login', [PagesController::class, 'login'])->name('login');
-Route::post('/login', [PagesController::class, 'loginPost'])->name('auth.post');
-Route::get('/register', [PagesController::class, 'registerShow'])->name('register');
-Route::post('/register', [PagesController::class, 'register'])->name('auth.register');
-Route::get('/logout', [PagesController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('auth.post');
+Route::get('/register', [AuthController::class, 'registerShow'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/user-list', [PagesController::class, 'users'])->name('user')->middleware('auth');
